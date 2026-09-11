@@ -1,0 +1,150 @@
+{
+  "originHash" : "1c283e979aa7af7145dda86c697219efce79d69b01de88ae1c2657307bacd62f",
+  "pins" : [
+    {
+      "identity" : "dlkit",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnno1962/DLKit",
+      "state" : {
+        "revision" : "018d2895322c4d619de4474f991dfa9405bbac38",
+        "version" : "3.6.0"
+      }
+    },
+    {
+      "identity" : "fishhook",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnno1962/fishhook",
+      "state" : {
+        "revision" : "51b4b873fb03072921337fc4b86a45e2fb24556e",
+        "version" : "1.2.2"
+      }
+    },
+    {
+      "identity" : "hotreloading",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnno1962/HotReloading.git",
+      "state" : {
+        "revision" : "5ad312cd5af048028ac4b668683e56e381d69146",
+        "version" : "5.1.0"
+      }
+    },
+    {
+      "identity" : "inject",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/krzysztofzablocki/Inject.git",
+      "state" : {
+        "revision" : "f53380e986a8b056e37d7ce9ca68de610b8415ef",
+        "version" : "1.6.0"
+      }
+    },
+    {
+      "identity" : "pow",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/EmergeTools/Pow.git",
+      "state" : {
+        "revision" : "1b4b1dda28c50b95f0872927ee2226fe8b58950e",
+        "version" : "1.0.6"
+      }
+    },
+    {
+      "identity" : "profileswiftui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnno1962/ProfileSwiftUI",
+      "state" : {
+        "revision" : "813bd75cc58be6aa993707c22262fb8f22d112d4",
+        "version" : "1.1.3"
+      }
+    },
+    {
+      "identity" : "remote",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnno1962/Remote",
+      "state" : {
+        "revision" : "2a03313297a15f31b354dbf2b40c62ca9630b0a1",
+        "version" : "2.3.5"
+      }
+    },
+    {
+      "identity" : "skeletonui",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/CSolanaM/SkeletonUI.git",
+      "state" : {
+        "revision" : "f025e9ba5d051374d7344efa8859df5b9399a181",
+        "version" : "2.0.2"
+      }
+    },
+    {
+      "identity" : "swift-custom-dump",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-custom-dump",
+      "state" : {
+        "revision" : "4fb9e7cbb4b8f5a7354005db39447f570d6b3e19",
+        "version" : "1.7.3"
+      }
+    },
+    {
+      "identity" : "swift-snapshot-testing",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/swift-snapshot-testing",
+      "state" : {
+        "revision" : "59a99c458de4d2dee580529b61b4f78dca7b7fa6",
+        "version" : "1.19.4"
+      }
+    },
+    {
+      "identity" : "swift-syntax",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/swiftlang/swift-syntax",
+      "state" : {
+        "revision" : "79e4b74a295b6eb74a8b585e3a39d29e70c1dbd1",
+        "version" : "603.0.2"
+      }
+    },
+    {
+      "identity" : "swiftregex5",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnno1962/SwiftRegex5",
+      "state" : {
+        "revision" : "60fde2e2e3b691abb35ba4b67e3f0adc82f6d1f5",
+        "version" : "6.1.3"
+      }
+    },
+    {
+      "identity" : "swifttrace",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnno1962/SwiftTrace",
+      "state" : {
+        "revision" : "589f37149d5b32cbdd44c70809df23b4f4fa0260",
+        "version" : "8.6.1"
+      }
+    },
+    {
+      "identity" : "swiftuix",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SwiftUIX/SwiftUIX.git",
+      "state" : {
+        "revision" : "e1754664a6105529b7978489164720185317c29e",
+        "version" : "0.3.1"
+      }
+    },
+    {
+      "identity" : "xctest-dynamic-overlay",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/pointfreeco/xctest-dynamic-overlay",
+      "state" : {
+        "revision" : "d9308ad679143c26a30dec52daefe82f54af2b82",
+        "version" : "1.13.1"
+      }
+    },
+    {
+      "identity" : "xprobeplugin",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/johnno1962/XprobePlugin",
+      "state" : {
+        "revision" : "c80f086ca7038c5e9236e1b15fea3f9e59395183",
+        "version" : "2.9.10"
+      }
+    }
+  ],
+  "version" : 3
+}

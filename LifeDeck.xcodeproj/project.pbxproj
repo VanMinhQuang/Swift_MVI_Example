@@ -6,6 +6,14 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		FAFD1FCE3053E57100919122 /* HotReloading in Frameworks */ = {isa = PBXBuildFile; productRef = FAFD1FCD3053E57100919122 /* HotReloading */; };
+		FAFD1FD03053E57100919122 /* HotReloadingGuts in Frameworks */ = {isa = PBXBuildFile; productRef = FAFD1FCF3053E57100919122 /* HotReloadingGuts */; };
+		FAFD1FD73053E5DA00919122 /* SwiftUIX in Frameworks */ = {isa = PBXBuildFile; productRef = FAFD1FD63053E5DA00919122 /* SwiftUIX */; };
+		FAFD1FDA3053E67700919122 /* Pow in Frameworks */ = {isa = PBXBuildFile; productRef = FAFD1FD93053E67700919122 /* Pow */; };
+		FAFD1FDD3053FA0F00919122 /* SkeletonUI in Frameworks */ = {isa = PBXBuildFile; productRef = FAFD1FDC3053FA0F00919122 /* SkeletonUI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		FAFD1F393053AD8000919122 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +60,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAFD1FCE3053E57100919122 /* HotReloading in Frameworks */,
+				FAFD1FDA3053E67700919122 /* Pow in Frameworks */,
+				FAFD1FDD3053FA0F00919122 /* SkeletonUI in Frameworks */,
+				FAFD1FD73053E5DA00919122 /* SwiftUIX in Frameworks */,
+				FAFD1FD03053E57100919122 /* HotReloadingGuts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +125,11 @@
 			);
 			name = LifeDeck;
 			packageProductDependencies = (
+				FAFD1FCD3053E57100919122 /* HotReloading */,
+				FAFD1FCF3053E57100919122 /* HotReloadingGuts */,
+				FAFD1FD63053E5DA00919122 /* SwiftUIX */,
+				FAFD1FD93053E67700919122 /* Pow */,
+				FAFD1FDC3053FA0F00919122 /* SkeletonUI */,
 			);
 			productName = LifeDeck;
 			productReference = FAFD1F293053AD7E00919122 /* LifeDeck.app */;
@@ -195,6 +213,13 @@
 			);
 			mainGroup = FAFD1F203053AD7E00919122;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				FAFD1FCB3053E51400919122 /* XCRemoteSwiftPackageReference "Inject" */,
+				FAFD1FCC3053E57100919122 /* XCRemoteSwiftPackageReference "HotReloading" */,
+				FAFD1FD53053E5DA00919122 /* XCRemoteSwiftPackageReference "SwiftUIX" */,
+				FAFD1FD83053E67700919122 /* XCRemoteSwiftPackageReference "Pow" */,
+				FAFD1FDB3053FA0F00919122 /* XCRemoteSwiftPackageReference "SkeletonUI" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = FAFD1F2A3053AD7E00919122 /* Products */;
 			projectDirPath = "";
@@ -578,6 +603,77 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		FAFD1FCB3053E51400919122 /* XCRemoteSwiftPackageReference "Inject" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/krzysztofzablocki/Inject.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.6.0;
+			};
+		};
+		FAFD1FCC3053E57100919122 /* XCRemoteSwiftPackageReference "HotReloading" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnno1962/HotReloading.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.11;
+			};
+		};
+		FAFD1FD53053E5DA00919122 /* XCRemoteSwiftPackageReference "SwiftUIX" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SwiftUIX/SwiftUIX.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.1;
+			};
+		};
+		FAFD1FD83053E67700919122 /* XCRemoteSwiftPackageReference "Pow" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/EmergeTools/Pow.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.6;
+			};
+		};
+		FAFD1FDB3053FA0F00919122 /* XCRemoteSwiftPackageReference "SkeletonUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CSolanaM/SkeletonUI.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		FAFD1FCD3053E57100919122 /* HotReloading */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAFD1FCC3053E57100919122 /* XCRemoteSwiftPackageReference "HotReloading" */;
+			productName = HotReloading;
+		};
+		FAFD1FCF3053E57100919122 /* HotReloadingGuts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAFD1FCC3053E57100919122 /* XCRemoteSwiftPackageReference "HotReloading" */;
+			productName = HotReloadingGuts;
+		};
+		FAFD1FD63053E5DA00919122 /* SwiftUIX */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAFD1FD53053E5DA00919122 /* XCRemoteSwiftPackageReference "SwiftUIX" */;
+			productName = SwiftUIX;
+		};
+		FAFD1FD93053E67700919122 /* Pow */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAFD1FD83053E67700919122 /* XCRemoteSwiftPackageReference "Pow" */;
+			productName = Pow;
+		};
+		FAFD1FDC3053FA0F00919122 /* SkeletonUI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = FAFD1FDB3053FA0F00919122 /* XCRemoteSwiftPackageReference "SkeletonUI" */;
+			productName = SkeletonUI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = FAFD1F213053AD7E00919122 /* Project object */;
 }

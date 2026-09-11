@@ -10,6 +10,9 @@ import SwiftData
 
 @main
 struct LifeDeckApp: App {
+    @StateObject private var appState = AppState()
+    @StateObject private var router = AppRouter()
+
     var sharedModelContainer: ModelContainer = {
         let schema = Schema([
             Item.self,
@@ -27,22 +30,12 @@ struct LifeDeckApp: App {
     var body: some Scene {
         WindowGroup {
             RootTabView()
+                .environment(\.dependencies, .live)
+                .environmentObject(appState)
+                .environmentObject(router)
+                .preferredColorScheme(appState.themeMode.colorScheme)
+                .tint(AppTheme.Colors.primary)
         }
         .modelContainer(sharedModelContainer)
-    }
-}
-
-struct RootTabView: View {
-    var body: some View {
-        TabView {
-            CardsView()
-                .tabItem {
-                    Label("Cards", systemImage: "square.stack.3d.up")
-                }
-            ContentView()
-                .tabItem {
-                    Label("Items", systemImage: "list.bullet")
-                }
-        }
     }
 }

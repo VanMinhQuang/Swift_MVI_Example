@@ -11,36 +11,35 @@ import SwiftUI
 
 struct CardsView: View {
     @Environment(\.modelContext) private var modelContext
-    @StateObject private var store = CardsStore(db: CardsView.makePreviewDb())
+    @Environment(\.dependencies) private var dependencies
+    @StateObject private var store = CardsStore(repository: InMemoryCardRepository())
 
     var body: some View {
-        NavigationStack {
-            content
-                .navigationTitle("Cards")
-                .toolbar {
-                    ToolbarItem(placement: .topBarTrailing) {
-                        Text("\(store.state.favoriteCount)/\(store.state.totalCount)")
-                            .font(AppTheme.Fonts.footnote)
-                            .foregroundStyle(AppTheme.Colors.textSecondary)
-                    }
+        content
+            .navigationTitle("Cards")
+            .toolbar {
+                ToolbarItem(placement: .topBarTrailing) {
+                    Text("\(store.state.favoriteCount)/\(store.state.totalCount)")
+                        .font(AppTheme.Fonts.footnote)
+                        .foregroundStyle(AppTheme.Colors.textSecondary)
                 }
-                .alert(
-                    "Something went wrong",
-                    isPresented: Binding(
-                        get: { store.state.errorMessage != nil },
-                        set: { if !$0 { store.send(.dismissError) } }
-                    ),
-                    presenting: store.state.errorMessage
-                ) { _ in
-                    Button("OK") { store.send(.dismissError) }
-                } message: { message in
-                    Text(message)
-                }
-        }
-        .task {
-            store.configure(db: SwiftDataDbService(context: modelContext))
-            store.send(.load)
-        }
+            }
+            .alert(
+                "Something went wrong",
+                isPresented: Binding(
+                    get: { store.state.errorMessage != nil },
+                    set: { if !$0 { store.send(.dismissError) } }
+                ),
+                presenting: store.state.errorMessage
+            ) { _ in
+                Button("OK") { store.send(.dismissError) }
+            } message: { message in
+                Text(message)
+            }
+            .task {
+                store.configure(repository: dependencies.makeCardRepository(modelContext))
+                store.send(.load)
+            }
     }
 
     @ViewBuilder
@@ -108,23 +107,12 @@ struct CardsView: View {
         }
         .padding(.horizontal, AppTheme.Spacing.lg)
     }
-
-    // MARK: - Preview / bootstrap
-
-    private static func makePreviewDb() -> DbService {
-        do {
-            let container = try ModelContainer(
-                for: CardItem.self,
-                configurations: ModelConfiguration(isStoredInMemoryOnly: true)
-            )
-            return SwiftDataDbService(context: ModelContext(container))
-        } catch {
-            fatalError("Failed to bootstrap CardsView preview DB: \(error)")
-        }
-    }
 }
 
 #Preview {
-    CardsView()
-        .modelContainer(for: CardItem.self, inMemory: true)
+    NavigationStack {
+        CardsView()
+            .environment(\.dependencies, .preview)
+            .modelContainer(for: CardItem.self, inMemory: true)
+    }
 }

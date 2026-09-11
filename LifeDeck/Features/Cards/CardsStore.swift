@@ -6,23 +6,22 @@
 import Combine
 import Foundation
 import OSLog
-import SwiftData
 import SwiftUI
 
 @MainActor
 final class CardsStore: MVIStore {
     @Published private(set) var state = CardsState()
 
-    private var db: DbService
+    private var repository: CardRepository
 
-    init(db: DbService) {
-        self.db = db
+    init(repository: CardRepository) {
+        self.repository = repository
     }
 
-    /// Swap in a new persistence backend (e.g. once the environment
-    /// ModelContext becomes available in a `.task` block).
-    func configure(db: DbService) {
-        self.db = db
+    /// Swap in a new repository (e.g. once the environment ModelContext
+    /// becomes available in a `.task` block and we can build a live one).
+    func configure(repository: CardRepository) {
+        self.repository = repository
     }
 
     // MARK: - Bindings
@@ -70,8 +69,8 @@ final class CardsStore: MVIStore {
         guard !state.isLoading else { return }
         state = state.copy(isLoading: true, errorMessage: .some(nil))
         do {
-            let items = try fetchAll()
-            state = state.copy(cards: items.map(CardSnapshot.init), isLoading: false)
+            let cards = try repository.fetchAll()
+            state = state.copy(cards: cards, isLoading: false)
         } catch {
             AppLogger.store.error("Load cards failed: \(error.localizedDescription, privacy: .public)")
             state = state.copy(isLoading: false, errorMessage: .some(error.localizedDescription))
@@ -80,8 +79,8 @@ final class CardsStore: MVIStore {
 
     private func handleRefresh() {
         do {
-            let items = try fetchAll()
-            state = state.copy(cards: items.map(CardSnapshot.init))
+            let cards = try repository.fetchAll()
+            state = state.copy(cards: cards)
         } catch {
             state = state.copy(errorMessage: .some(error.localizedDescription))
         }
@@ -93,11 +92,10 @@ final class CardsStore: MVIStore {
         let note = state.newCardNote.trimmed
         state = state.copy(isAdding: true)
         do {
-            let newCard = CardItem(title: title, note: note)
-            try db.insert(newCard)
-            let items = try fetchAll()
+            _ = try repository.add(title: title, note: note)
+            let cards = try repository.fetchAll()
             state = state.copy(
-                cards: items.map(CardSnapshot.init),
+                cards: cards,
                 newCardTitle: "",
                 newCardNote: "",
                 isAdding: false
@@ -110,12 +108,9 @@ final class CardsStore: MVIStore {
 
     private func handleToggleFavorite(_ id: UUID) {
         do {
-            let all = try fetchAll()
-            guard let target = all.first(where: { $0.id == id }) else { return }
-            target.isFavorite.toggle()
-            try db.save()
-            let items = try fetchAll()
-            state = state.copy(cards: items.map(CardSnapshot.init))
+            try repository.toggleFavorite(id: id)
+            let cards = try repository.fetchAll()
+            state = state.copy(cards: cards)
         } catch {
             state = state.copy(errorMessage: .some(error.localizedDescription))
         }
@@ -123,22 +118,11 @@ final class CardsStore: MVIStore {
 
     private func handleDelete(_ id: UUID) {
         do {
-            let all = try fetchAll()
-            guard let target = all.first(where: { $0.id == id }) else { return }
-            try db.delete(target)
-            let items = try fetchAll()
-            state = state.copy(cards: items.map(CardSnapshot.init))
+            try repository.delete(id: id)
+            let cards = try repository.fetchAll()
+            state = state.copy(cards: cards)
         } catch {
             state = state.copy(errorMessage: .some(error.localizedDescription))
         }
-    }
-
-    // MARK: - Helpers
-
-    private func fetchAll() throws -> [CardItem] {
-        try db.fetch(
-            CardItem.self,
-            sortBy: [SortDescriptor(\CardItem.createdAt, order: .reverse)]
-        )
     }
 }
